@@ -1,6 +1,7 @@
 package com.Bank.demo.controller;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ import com.Bank.demo.service.EmployeeService;
 @RequestMapping(value="/employee")
 public class EmployeeController {
 
-	private static Logger logger=Logger.getLogger(EmployeeController.class);
+	private static Logger logger=LoggerFactory.getLogger(AccountController.class);
 	
 	@Autowired
 	private JsonUtilies jsonUtilies;

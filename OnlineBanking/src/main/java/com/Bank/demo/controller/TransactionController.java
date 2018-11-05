@@ -4,7 +4,8 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ import com.Bank.demo.service.TransactionService;
 @RequestMapping(value="/transaction")
 public class TransactionController {
 	
-	private static Logger logger=Logger.getLogger(TransactionController.class);
+	private static Logger logger=LoggerFactory.getLogger(AccountController.class);
 	@Autowired
 	private TransactionService transactionService;
 	
@@ -50,7 +51,7 @@ public class TransactionController {
 		try {
 			Double amount=Double.valueOf(amountStr);
 			List<Transaction> transactions= transactionService.getTransactionByAmount(amount);
-			logger.info(transactions);
+			logger.info(transactions.toString());
 			return new ResponseEntity<>(transactions,HttpStatus.OK);
 		}catch(Exception e) {
 			logger.debug(e.toString());
@@ -64,7 +65,7 @@ public class TransactionController {
 	public ResponseEntity<?> getTransactionByType(@RequestParam("type") String transactionType){
 		try {
 			List<Transaction>transactions=transactionService.getTranactionByTransactionType(transactionType);
-			logger.info(transactions);
+			logger.info(transactions.toString());
 			return new ResponseEntity<>(transactions,HttpStatus.OK);
 		}catch(Exception e) {
 			logger.debug(e.toString());

@@ -1,6 +1,7 @@
 package com.Bank.demo.controller;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ import com.Bank.demo.service.ClientService;
 @RequestMapping(value="/clients")
 public class ClientController {
 	
-	private static Logger logger=Logger.getLogger(ClientController.class);
+	private static Logger logger=LoggerFactory.getLogger(AccountController.class);
 
 	@Autowired
 	private ClientService clientService;
