@@ -44,7 +44,7 @@ public class ClientController {
 		
 	}
 	
-	@DeleteMapping(value="/deleteClient")
+	@DeleteMapping(value="/delete")
 	public ResponseEntity<?> deleteClientByMail(@RequestBody String email){	
 		try {
 					
@@ -57,7 +57,7 @@ public class ClientController {
 		}
 	}
 	
-	@RequestMapping(value="/getClient",method=RequestMethod.GET)
+	@RequestMapping(value="/getByClientName",method=RequestMethod.GET)
 	public ResponseEntity<?> getClientByName(@RequestParam("clientName") String name){
 		try {
 		Client client=clientService.getClientByUserName(name);
@@ -72,7 +72,7 @@ public class ClientController {
 		}
 	}
 	
-	@RequestMapping(value="/getClient",method=RequestMethod.GET)
+	@RequestMapping(value="/getByEmail",method=RequestMethod.GET)
 	public ResponseEntity<?> getClientByEmail(@RequestParam("email") String email){
 		try {
 		Client client=clientService.getClientByEmail(email);

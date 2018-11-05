@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -15,7 +16,8 @@ import com.Bank.demo.Utilies.JsonUtilies;
 import com.Bank.demo.model.Account;
 import com.Bank.demo.service.AccountService;
 
-@Controller(value="/account")
+@Controller
+@RequestMapping(value="/account")
 public class AccountController {
 	
 	private static Logger logger=Logger.getLogger(AccountController.class);
@@ -25,7 +27,7 @@ public class AccountController {
 	@Autowired
 	private JsonUtilies jsonUtilies;
 	
-	@PostMapping(value="/save",consumes="application/json")
+	@PostMapping(path="/save",consumes="application/json;charset=utf-8")
 	@ResponseBody
 	public ResponseEntity<?> saveAccount(@RequestBody String accountStr){
 		try {
@@ -38,8 +40,7 @@ public class AccountController {
 		
 	}
 	
-	@GetMapping(value="/get",consumes="application/json")
-	@ResponseBody
+	@GetMapping(path="/get",produces="application/json;charset=utf-8")
 	public ResponseEntity<?> getAccountbyBalance(@RequestParam("balance") String balanceStr){
 		try {
 			double balance=Double.valueOf(balanceStr);

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -19,7 +20,8 @@ import com.Bank.demo.Utilies.JsonUtilies;
 import com.Bank.demo.model.Transaction;
 import com.Bank.demo.service.TransactionService;
 
-@Controller(value="/transaction")
+@Controller
+@RequestMapping(value="/transaction")
 public class TransactionController {
 	
 	private static Logger logger=Logger.getLogger(TransactionController.class);
@@ -29,7 +31,7 @@ public class TransactionController {
 	@Autowired
 	private JsonUtilies jsonUtilies;
 	
-	@PostMapping(value="save",consumes="application/json")
+	@PostMapping(path="/save",consumes="application/json;charset=utf-8")
 	@ResponseBody
 	public ResponseEntity<?> saveTransaction(@RequestBody String transactionStr){
 		try {
@@ -42,7 +44,7 @@ public class TransactionController {
 		}
 	}
 	
-	@GetMapping(value="transactionsAmount",consumes="application/json")
+	@GetMapping(path="/getBytransactionsAmount",produces="application/json;charset=utf-8")
 	@ResponseBody
 	public ResponseEntity<?>getTransactionByAmount(@RequestParam("amount") String amountStr){
 		try {
@@ -57,7 +59,7 @@ public class TransactionController {
 		}
 	}
 	
-	@GetMapping(value="transactionsType",consumes="application/json")
+	@GetMapping(path="/transactionsType",produces="application/json;charset=utf-8")
 	@ResponseBody
 	public ResponseEntity<?> getTransactionByType(@RequestParam("type") String transactionType){
 		try {

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -16,7 +17,8 @@ import com.Bank.demo.Utilies.JsonUtilies;
 import com.Bank.demo.model.Employee;
 import com.Bank.demo.service.EmployeeService;
 
-@Controller(value="/employee")
+@Controller
+@RequestMapping(value="/employee")
 public class EmployeeController {
 
 	private static Logger logger=Logger.getLogger(EmployeeController.class);
@@ -27,7 +29,7 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
 	
-	@PostMapping(value="/save",consumes="application/json")
+	@PostMapping(path="/save",consumes="application/json;charset=utf-8")
 	@ResponseBody
 	public ResponseEntity<?> saveEmployee(@RequestBody String employeeStr){
 		try {
@@ -41,7 +43,7 @@ public class EmployeeController {
 		
 	}
 	
-	@DeleteMapping(value="/delete",consumes="application/json")
+	@DeleteMapping(path="/delete",consumes="application/json;charset=utf-8")
 	@ResponseBody
 	public ResponseEntity<?> deleteEmployeeByMail(@RequestBody String emailStr){
 		try {
@@ -55,7 +57,7 @@ public class EmployeeController {
 		
 	}
 	
-	@GetMapping(value="/get",consumes="application/json")
+	@GetMapping(path="/getByMail",produces="application/json;charset=utf-8")
 	@ResponseBody
 	public ResponseEntity<?> getEmployeeByMail(@RequestParam("email") String emailStr){
 		try {

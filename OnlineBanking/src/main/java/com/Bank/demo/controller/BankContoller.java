@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -15,7 +17,8 @@ import com.Bank.demo.Utilies.JsonUtilies;
 import com.Bank.demo.model.Bank;
 import com.Bank.demo.service.BankService;
 
-@Controller(value="/bank")
+@Controller
+@RequestMapping(value="/bank")
 public class BankContoller {
 	
 	private static Logger logger= Logger.getLogger(BankContoller.class);
@@ -26,9 +29,9 @@ public class BankContoller {
 	@Autowired
 	private BankService bankService;
 
-	@GetMapping(value="/get",consumes="application/json")
+	@GetMapping(path="/get",produces="application/json;charset=utf-8")
 	@ResponseBody
-	public ResponseEntity<?> getBankByName(@RequestParam String bankName){
+	public ResponseEntity<?> getBankByName(@RequestParam("bankName") String bankName){
 		try {
 			Bank bank=bankService.getBankByName(bankName);
 			return new ResponseEntity<>(bank,HttpStatus.OK);
@@ -37,9 +40,9 @@ public class BankContoller {
 		}	
 	}
 	
-	@DeleteMapping(value="/delete",consumes="application/json")
+	@DeleteMapping(path="/delete",consumes="application/json;charset=utf-8")
 	@ResponseBody
-	public ResponseEntity<?> deleteBankByName(String bankNameStr){
+	public ResponseEntity<?> deleteBankByName(@RequestBody String bankNameStr){
 		try {
 			String bankName=jsonUtilies.getName(bankNameStr);
 			bankService.deleteBankByName(bankName);
@@ -49,9 +52,9 @@ public class BankContoller {
 		}
 	}
 	
-	@PostMapping(value="/save",consumes="application/json")
+	@PostMapping(path="/save",consumes="application/json;charset=utf-8")
 	@ResponseBody
-	public ResponseEntity<?> saveBank(String bankStr){
+	public ResponseEntity<?> saveBank(@RequestBody String bankStr){
 		try {
 			Bank bank=jsonUtilies.getBankObject(bankStr);
 			bankService.saveBank(bank);
