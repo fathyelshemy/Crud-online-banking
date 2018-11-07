@@ -38,7 +38,7 @@ public class EmployeeController {
 			employeeService.saveEmployee(employee);
 			return new ResponseEntity<>(HttpStatus.CREATED);
 		}catch(Exception e) {
-			logger.debug(e.toString());
+			logger.debug("saveEmployee \t", e);
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
@@ -52,7 +52,7 @@ public class EmployeeController {
 			employeeService.deleteClientByEmail(email);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}catch(Exception e) {
-			logger.debug(e.toString());
+			logger.debug("deleteEmployeeByMail \t", e);
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
@@ -60,12 +60,12 @@ public class EmployeeController {
 	
 	@GetMapping(path="/getByMail",produces="application/json;charset=utf-8")
 	@ResponseBody
-	public ResponseEntity<?> getEmployeeByMail(@RequestParam("email") String emailStr){
+	public ResponseEntity<?> getEmployeeByMail(@RequestParam("email") String email){
 		try {
-			String email=jsonUtilies.getUserEmail(emailStr);
 			Employee employee=employeeService.getEmployeeByMail(email);
 			return new ResponseEntity<>(employee,HttpStatus.OK);
 		}catch(Exception e) {
+			logger.debug("getEmployeeByMail \t", e);
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}

@@ -38,7 +38,7 @@ public class ClientController {
 			return new ResponseEntity<>(HttpStatus.CREATED);
 
 		}catch(Exception e) {
-			logger.debug(e.toString());
+			logger.debug("saveUser \t", e);
 			return new ResponseEntity<>(e.toString(),HttpStatus.BAD_REQUEST);
 			
 		}
@@ -53,7 +53,7 @@ public class ClientController {
 		clientService.deleteClientByEmail(strEmail);
 		return new ResponseEntity<>(HttpStatus.OK);
 		}catch(Exception e) {
-			logger.error(e.toString());
+			logger.debug("deleteClientByMail \t", e);
 			return new ResponseEntity<>(e.toString(), HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -68,7 +68,7 @@ public class ClientController {
 			logger.debug("client is null");
 			return new ResponseEntity<>("client is null ",HttpStatus.BAD_REQUEST);
 		}catch(Exception e) {
-			logger.debug(e.toString());
+			logger.debug("getClientByName \t", e);
 			return new ResponseEntity<>(e.toString(),HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -83,7 +83,7 @@ public class ClientController {
 			logger.debug("client is null");
 			return new ResponseEntity<>("client is null ",HttpStatus.BAD_REQUEST);
 		}catch(Exception e) {
-			logger.debug(e.toString());
+			logger.debug("getClientByEmail \t", e);
 			return new ResponseEntity<>(e.toString(),HttpStatus.BAD_REQUEST);
 		}
 	}

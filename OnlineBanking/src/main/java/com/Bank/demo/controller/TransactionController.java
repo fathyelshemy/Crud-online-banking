@@ -40,7 +40,7 @@ public class TransactionController {
 			transactionService.saveTransaction(transaction);
 			return new ResponseEntity<>(HttpStatus.CREATED);
 		}catch(Exception e) {
-			logger.debug(e.toString());
+			logger.debug("saveTransaction \t", e);
 			return new ResponseEntity<>(e.toString(),HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -54,7 +54,7 @@ public class TransactionController {
 			logger.info(transactions.toString());
 			return new ResponseEntity<>(transactions,HttpStatus.OK);
 		}catch(Exception e) {
-			logger.debug(e.toString());
+			logger.debug("getTransactionByAmount \t", e);
 			return new ResponseEntity<>(e.toString(),HttpStatus.BAD_REQUEST);
 
 		}
@@ -68,7 +68,7 @@ public class TransactionController {
 			logger.info(transactions.toString());
 			return new ResponseEntity<>(transactions,HttpStatus.OK);
 		}catch(Exception e) {
-			logger.debug(e.toString());
+			logger.debug("getTransactionByType \t", e);
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		

@@ -36,6 +36,7 @@ public class AccountController {
 			accountService.saveAccount(account);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}catch(Exception e) {
+			logger.debug("saveAccount \t", e);
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
@@ -48,6 +49,7 @@ public class AccountController {
 			Account account=accountService.getAccountByBalance(balance);
 			return new ResponseEntity<>(account,HttpStatus.OK);
 		}catch(Exception e) {
+			logger.debug("getAccountbyBalance \t", e);
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		

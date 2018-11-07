@@ -37,6 +37,7 @@ public class BankContoller {
 			Bank bank=bankService.getBankByName(bankName);
 			return new ResponseEntity<>(bank,HttpStatus.OK);
 		}catch(Exception e) {
+			logger.debug("getBankByName \t", e);
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}	
 	}
@@ -49,6 +50,7 @@ public class BankContoller {
 			bankService.deleteBankByName(bankName);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}catch(Exception e) {
+			logger.debug("deleteBankByName \t", e);
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -61,6 +63,7 @@ public class BankContoller {
 			bankService.saveBank(bank);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}catch(Exception e) {
+			logger.debug("saveBank \t", e);
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
