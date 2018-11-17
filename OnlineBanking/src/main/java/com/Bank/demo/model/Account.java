@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 public class Account {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="account_id")
 	private Long id;
 	
 	@OneToOne(fetch=FetchType.LAZY)
@@ -23,6 +24,7 @@ public class Account {
 	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="bank_id",nullable=false)
 	private Bank bankId;
+	
 	@NotNull
 	@Column(name="balance")
 	private double balance;
