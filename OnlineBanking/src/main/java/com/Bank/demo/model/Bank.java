@@ -18,7 +18,7 @@ public class Bank {
 	@Column(name="bank_id")
 	private Long id;
 	@NotNull
-	@Size(min=3,max=20)
+	@Size(min=0,max=20)
 	@Column(name="bank_name")
 	private String name;
 	@NotNull
@@ -34,7 +34,7 @@ public class Bank {
 	})
 	private Address address;
 	@NotNull
-	@Size(min=8,max=20)
+	@Size(min=0,max=20)
 	@Column(name="mobile_number")
 	private String mobileNumber;
 	
