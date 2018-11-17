@@ -17,18 +17,19 @@ public class Employee {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="employee_id")
 	private Long id;
+	
 	@Column(name="employee_name")
 	private String employeeName;
 	@Email
 	@NotNull
-	@Column(name="emial",unique=true)
+	@Column(name="email",unique=true)
 	private String email;
 	@NotNull
 	@Column(name="password")
 	private String password;
+	
 	@Column(name="mobile_number")
 	private String mobileNumber;
-	@NotNull
 	@Embedded
 	@AttributeOverrides(value={
 		@AttributeOverride(name="employee_country",column=@Column(name="country")),
